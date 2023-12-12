@@ -52,4 +52,36 @@ import { block } from "../src";
   if (result !== "zero") throw new Error(`Expected zero, but got ${result}`);
 }
 
+async function testTryCatch() {
+  {
+    let errorCaught = false;
+    await block.trycatch(
+      async () => {
+        throw new Error("test error");
+      },
+      async (error) => {
+        errorCaught = true;
+      }
+    );
+    if (!errorCaught) throw new Error("Expected to catch an error, but didn't");
+  }
+
+  {
+    let normalExecution = false;
+    const x = await block.trycatch(
+      async () => {
+        normalExecution = true;
+        return "test";
+      },
+      async (error) => {
+        return error;
+      }
+    );
+    if (!normalExecution && x !== "test")
+      throw new Error("Expected normal execution, but got an error");
+  }
+}
+
+testTryCatch();
+
 console.log("tests are done.");

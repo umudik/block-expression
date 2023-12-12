@@ -9,4 +9,15 @@ export const block = {
     }
     return elseBlock();
   },
+
+  trycatch: async function <T, U>(
+    tryBlock: () => Promise<T>,
+    catchBlock: (error: Error) => Promise<U>
+  ): Promise<T | U> {
+    try {
+      return await tryBlock();
+    } catch (error) {
+      return await catchBlock(error);
+    }
+  },
 };
