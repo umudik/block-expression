@@ -1,6 +1,6 @@
 {
   "name": "block-expression",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "block-expression is designed to mimic Rust-style if block expressions in JavaScript, offering a cleaner and more functional approach to conditional logic. This package provides a set of functions structured to handle conditional logic with chaining else if structures and a neat else fallback. Each condition is evaluated in sequence, and the result of the first matching condition is returned. block-expressions elevates your JavaScript conditional operations to a new level, making your code more readable, organized, and expression-focused.",
   "main": "dist/src/index.js",
   "scripts": {
