@@ -55,15 +55,18 @@ import { block } from "../src";
 async function testTryCatch() {
   {
     let errorCaught = false;
-    await block.trycatch(
+    const x = await block.trycatch(
       async () => {
         throw new Error("test error");
       },
       async (error) => {
         errorCaught = true;
+        return error;
       }
     );
-    if (!errorCaught) throw new Error("Expected to catch an error, but didn't");
+    if (!errorCaught || x.message !== "test error") {
+      throw new Error();
+    }
   }
 
   {
@@ -77,8 +80,7 @@ async function testTryCatch() {
         return error;
       }
     );
-    if (!normalExecution && x !== "test")
-      throw new Error("Expected normal execution, but got an error");
+    if (!normalExecution || x !== "test") throw new Error();
   }
 }
 
