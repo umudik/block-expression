@@ -14,7 +14,9 @@ npm install block-expression
 
 The block.if function takes a structure consisting of an array of conditions and result blocks. The conditions are evaluated sequentially, and the result block of the first satisfied condition is executed.
 
-### Simple Example
+### Simple Examples
+
+### if
 
 ```javascript
 import { block } from "block-expression";
@@ -32,7 +34,7 @@ const result = block.if(
 console.log(result); // Outputs: "medium" as string
 ```
 
-### Usage with Type Parameter
+#### Usage with Type Parameter
 
 ```typescript
 import { block } from "block-expression";
@@ -45,5 +47,22 @@ const result = block.if<boolean>( // It will be set automatically but you can st
   () => false // else
 );
 
-console.log(result); // Outputs: "medium" as string
+console.log(result); // Outputs: true as boolean
+```
+
+### trycatch
+
+```typescript
+import { block } from "block-expression";
+
+const result = block.trycatch(
+  async function tryblock() {
+    return "hello world";
+  },
+  async function catchblock() {
+    return 2634;
+  }
+);
+
+console.log(result); // Outputs: "hello world" as <string | number>
 ```
