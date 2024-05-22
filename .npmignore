@@ -1,10 +1,8 @@
 # Direktörler
 node_modules/
 test/
-packages/
 tests/
 __tests__/
-package/
 docs
 
 # Dosyalar
